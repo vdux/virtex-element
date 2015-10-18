@@ -6,18 +6,16 @@ import {element as _element} from 'virtex'
 import EvStore from 'ev-store'
 import events from './events'
 import {string as toStyle} from 'to-style'
-
+import forEach from './forEach'
 
 /**
  * virtex-element
  */
 
-function element (tag, attrs = {}, ...children) {
+function element (tag, attrs, ...children) {
   // Only apply sugar to native elements
-  if (typeof tag === 'string') {
-    for (let key in attrs) {
-      attrs[key] = sugar(key, attrs[key])
-    }
+  if (typeof tag === 'string' && attrs) {
+    forEach(attrs, (val, key) => attrs[key] = sugar(key, val))
   }
 
   return _element(tag, attrs, ...children)
@@ -54,12 +52,12 @@ function classSugar (name, value) {
     } else if (typeof value === 'object') {
       let str = ''
 
-      for (let key in value) {
-        if (value.hasOwnProperty(key) && value[key]) {
+      forEach(value, (val, key) => {
+        if (val) {
           if (str) str += ' '
           str += key
         }
-      }
+      })
 
       return str
     }
