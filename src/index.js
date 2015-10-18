@@ -3,19 +3,36 @@
  */
 
 import {element as _element} from 'virtex'
-import evStore from 'ev-store'
+import EvStore from 'ev-store'
 import events from './events'
+import {string as toStyle} from 'to-style'
+
 
 /**
  * virtex-element
  */
 
 function element (tag, attrs = {}, ...children) {
-  for (let key in attrs) {
-    attrs[key] = eventSugar(focusSugar(classSugar(key, attrs[key])))
+  // Only apply sugar to native elements
+  if (typeof tag === 'string') {
+    for (let key in attrs) {
+      attrs[key] = sugar(key, attrs[key])
+    }
   }
 
   return _element(tag, attrs, ...children)
+}
+
+function sugar (name, value) {
+  return styleSugar(name, eventSugar(name, focusSugar(name, classSugar(name, value))))
+}
+
+function styleSugar (name, value) {
+  if (name === 'style' && typeof value === 'object') {
+    return toStyle(value)
+  }
+
+  return value
 }
 
 function eventSugar (name, value) {

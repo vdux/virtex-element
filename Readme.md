@@ -14,6 +14,7 @@ A slightly opinionated, higher-level JSX element creator for [virtex](https://gi
   * Adds [ev-store](https://github.com/Raynos/ev-store) delegated events via `onXxx` property names - where `Xxx` is an event name (e.g. `onClick`).  Use a library like [delegant](https://github.com/ashaffer/delegant) to process them.
   * Class sugar for arrays/objects.  `['nav', 'featured'] -> 'nav featured'`, `{nav: true, featured: true, small: false} -> 'nav featured'`.
   * `focused` property.  If you set the `focused` prop to true, the element will receive focus when it is rendered.
+  * Stringifies `style` objects using [toStyle](https://github.com/radubrehar/toStyle).
 
 ## License
 

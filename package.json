@@ -10,7 +10,12 @@
     "postpublish": "rm -rf lib"
   },
   "dependencies": {
-    "ev-store": "^7.0.0"
+    "babel": "^5.8.23",
+    "babel-tape-runner": "^1.2.0",
+    "ev-store": "^7.0.0",
+    "standard": "^5.3.1",
+    "tape": "^4.2.1",
+    "to-style": "^1.3.3"
   },
   "peerDependencies": {
     "virtex": "*"
