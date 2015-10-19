@@ -12,13 +12,13 @@ import forEach from './forEach'
  * virtex-element
  */
 
-function element (tag, attrs, ...children) {
+function element (tag, attrs) {
   // Only apply sugar to native elements
   if (typeof tag === 'string' && attrs) {
     forEach(attrs, (val, key) => attrs[key] = sugar(key, val))
   }
 
-  return _element(tag, attrs, ...children)
+  return _element.apply(null, arguments)
 }
 
 function sugar (name, value) {
