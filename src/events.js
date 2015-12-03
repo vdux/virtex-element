@@ -12,6 +12,7 @@ export default {
   onCopy: 'copy',
   onCut: 'cut',
   onDoubleClick: 'dblclick',
+  onDblClick: 'dblclick',
   onDrag: 'drag',
   onDragEnd: 'dragend',
   onDragEnter: 'dragenter',

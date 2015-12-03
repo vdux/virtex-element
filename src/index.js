@@ -6,7 +6,7 @@ import {element as _element} from 'virtex'
 import EvStore from 'ev-store'
 import events from './events'
 import {string as toStyle} from 'to-style'
-import forEach from './forEach'
+import forEach from 'foreach'
 
 /**
  * virtex-element
@@ -67,9 +67,9 @@ function classSugar (name, value) {
 }
 
 function bindEvent (eventName, fn) {
-  return node => {
-    EvStore(node)[eventName] = fn
-  }
+  return Array.isArray(fn)
+    ? fn.map(f => bindEvent(eventName, f))
+    : node => EvStore(node)[eventName] = fn
 }
 
 function focusElement (node) {
