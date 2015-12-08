@@ -10,8 +10,10 @@
     "postpublish": "rm -rf lib"
   },
   "dependencies": {
+    "@micro-js/foreach": "^1.1.0",
+    "@micro-js/is-object": "^1.0.0",
+    "@micro-js/keychord": "^1.0.0",
     "ev-store": "^7.0.0",
-    "foreach": "github:micro-js/foreach",
     "to-style": "^1.3.3"
   },
   "peerDependencies": {
