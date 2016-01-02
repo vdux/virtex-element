@@ -2,13 +2,22 @@
  * Imports
  */
 
+import element from '../src'
 import test from 'tape'
-import virtex-element from '../src'
 
 /**
  * Tests
  */
 
-test('should work', () => {
+test('style sugar: convert objects to strings', t => {
+  const div = element('div', {
+    style: {color: '#fff', backgroundColor: '#000'}
+  })
 
+  t.deepEqual(trim(div.props.style), 'color:#fff;background-color:#000')
+  t.end()
 })
+
+function trim (str) {
+  return str.replace(/ /g,'')
+}
