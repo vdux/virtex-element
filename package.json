@@ -7,7 +7,8 @@
   "main": "lib/index.js",
   "scripts": {
     "prepublish": "rm -rf lib && babel src --out-dir lib",
-    "postpublish": "rm -rf lib"
+    "postpublish": "rm -rf lib",
+    "test": "babel-tape-runner test/*.js | tap-spec"
   },
   "dependencies": {
     "@micro-js/foreach": "^1.1.0",
@@ -21,7 +22,9 @@
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.1.18",
+    "babel-tape-runner": "^2.0.0",
     "standard": "^5.1.0",
+    "tap-spec": "^4.1.1",
     "tape": "^4.2.0"
   }
 }
