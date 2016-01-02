@@ -5,7 +5,6 @@
 import {element as _element} from 'virtex'
 import EvStore from 'ev-store'
 import events from './events'
-import {string as toStyle} from 'to-style'
 import forEach from '@micro-js/foreach'
 import isObject from '@micro-js/is-object'
 import keychord from '@micro-js/keychord'
@@ -66,6 +65,15 @@ function classSugar (value, name) {
   }
 
   return value
+}
+
+function toStyle (style) {
+  return Object.keys(style)
+    .map(property => {
+      const dashedProperty = property.replace(/([a-z][A-Z])/g, res => `${res[0]}-${res[1].toLowerCase()}`)
+      return `${dashedProperty}:${style[property]}`
+    })
+    .join(';')
 }
 
 function bindEvent (eventName, fn) {
