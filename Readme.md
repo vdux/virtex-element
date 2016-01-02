@@ -47,13 +47,14 @@ function render ({props}) {
 
 ### Style objects
 
-Passing an object as the `style` prop to an element will cause that object to be stringified by [toStyle](https://github.com/radubrehar/toStyle). E.g.
+Passing an object as the `style` prop to an element will cause that object to be stringified and each camel cased property will get dashed. E.g.
 
 ```javascript
 import colors from 'lib/colors'
 
 function render ({props, children}) {
-  return <button style={{color: props.primary ? colors.primary : colors.accent}}>{children}</button>
+  return <button style={{backgroundColor: props.primary ? colors.primary : colors.accent}}>{children}</button>
+  // style = 'background-color:#fff'
 }
 ```
 
