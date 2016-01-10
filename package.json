@@ -11,9 +11,14 @@
     "test": "babel-tape-runner test/*.js | tap-spec"
   },
   "dependencies": {
-    "@micro-js/foreach": "^1.1.0",
-    "@micro-js/is-object": "^1.0.0",
-    "@micro-js/keychord": "^1.0.0",
+    "@f/capitalize": "^1.0.0",
+    "@f/dom-events": "^1.0.3",
+    "@f/focus-element": "^1.0.0",
+    "@f/foreach": "^1.2.2",
+    "@f/is-object": "^1.1.1",
+    "@f/keychord": "^1.1.1",
+    "@f/to-inline-style": "^0.1.1",
+    "classnames": "^2.2.3",
     "ev-store": "^7.0.0",
     "virtex": "^0.2.0"
   },
