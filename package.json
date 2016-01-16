@@ -19,8 +19,7 @@
     "@f/keychord": "^1.1.1",
     "@f/to-inline-style": "^0.1.1",
     "classnames": "^2.2.3",
-    "ev-store": "^7.0.0",
-    "virtex": "^0.2.0"
+    "ev-store": "^7.0.0"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.1.18",
