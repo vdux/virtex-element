@@ -2,7 +2,7 @@
   "name": "virtex-element",
   "description": "A slightly opinionated, higher-level JSX element creator for virtex",
   "repository": "git://github.com/ashaffer/virtex-element.git",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
@@ -11,13 +11,15 @@
     "test": "babel-tape-runner test/*.js | tap-spec"
   },
   "dependencies": {
-    "@micro-js/foreach": "^1.1.0",
-    "@micro-js/is-object": "^1.0.0",
-    "@micro-js/keychord": "^1.0.0",
+    "@f/capitalize": "^1.0.0",
+    "@f/dom-events": "^1.0.3",
+    "@f/focus-element": "^1.0.0",
+    "@f/foreach": "^1.2.2",
+    "@f/is-object": "^1.1.1",
+    "@f/keychord": "^1.1.1",
+    "@f/to-inline-style": "^0.1.1",
+    "classnames": "^2.2.3",
     "ev-store": "^7.0.0"
-  },
-  "peerDependencies": {
-    "virtex": "*"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",

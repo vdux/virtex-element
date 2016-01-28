@@ -3,11 +3,21 @@
  */
 
 import {element as _element} from 'virtex'
+import toStyle from '@f/to-inline-style'
+import capitalize from '@f/capitalize'
+import focus from '@f/focus-element'
+import classNames from 'classnames'
+import isObject from '@f/is-object'
+import keychord from '@f/keychord'
+import events from '@f/dom-events'
+import forEach from '@f/foreach'
 import EvStore from 'ev-store'
-import events from './events'
-import forEach from '@micro-js/foreach'
-import isObject from '@micro-js/is-object'
-import keychord from '@micro-js/keychord'
+
+/**
+ * Constants
+ */
+
+const eventRegex = new RegExp('^on(?:' + events.join('|') + ')$', 'i')
 
 /**
  * virtex-element
@@ -23,89 +33,35 @@ function element (tag, attrs) {
 }
 
 function sugar (value, name) {
-  return styleSugar(eventSugar(focusSugar(classSugar(value, name), name), name), name)
-}
-
-function styleSugar (value, name) {
-  if (name === 'style' && isObject(value)) {
-    return toStyle(value)
-  }
-
-  return value
-}
-
-function eventSugar (value, name) {
-  return events.hasOwnProperty(name)
-    ? bindEvent(events[name], value)
-    : value
-}
-
-function focusSugar (value, name) {
-  return name === 'focused'
-    ? focusElement
-    : value
-}
-
-function classSugar (value, name) {
-  if (name === 'class') {
-    if (Array.isArray(value)) {
-      return value.join(' ')
-    } else if (isObject(value)) {
-      let str = ''
-
-      forEach((val, key) => {
-        if (val) {
-          if (str) str += ' '
-          str += key
-        }
-      }, value)
-
-      return str
-    }
-  }
-
-  return value
-}
-
-function toStyle (style) {
-  return Object.keys(style)
-    .map(property => {
-      const dashedProperty = property.replace(/([a-z][A-Z])/g, res => `${res[0]}-${res[1].toLowerCase()}`)
-      return `${dashedProperty}:${style[property]}`
-    })
-    .join(';')
-}
-
-function bindEvent (eventName, fn) {
-  return node => EvStore(node)[eventName] = createHandler(eventName, fn)
-}
-
-function createHandler (eventName, fn) {
-  if (isObject(fn) && isKeyboardEvent(eventName)) {
-    return e => {
-      var chord = keychord(e)
-      if (fn[chord]) {
-        var f = fn[chord]
-        return Array.isArray(f) ? f.map(f => f(e)) : f(e)
-      }
-    }
-  } else if (Array.isArray(fn)) {
-    return e => fn.map(f => f(e))
-  } else {
-    return fn
+  switch (name) {
+    case 'style':
+      if (isObject(value)) value = toStyle(value)
+      return value
+    case 'class':
+      return classNames(value)
+    case 'focused':
+      return value && (node => setTimeout(() => focus(node)))
+    default:
+      return eventRegex.test(name)
+        ? bindEvent(name.slice(2).toLowerCase(), value)
+        : value
   }
 }
 
-function isKeyboardEvent (eventName) {
-  return ['keydown', 'keypress', 'keyup'].indexOf(eventName) !== -1
+function bindEvent (name, fn) {
+  return node => EvStore(node)[name] = createHandler(fn)
 }
 
-function focusElement (node) {
-  setTimeout(() => {
-    if (node.ownerDocument.activeElement !== node) {
-      node.focus()
+function createHandler (fn) {
+  return e => {
+    const f = isObject(fn) ? fn[keychord(e)] : fn
+
+    if (f) {
+      return Array.isArray(f)
+        ? f.map(f => f(e))
+        : f(e)
     }
-  })
+  }
 }
 
 /**
