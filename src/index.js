@@ -3,14 +3,12 @@
  */
 
 import {element as _element} from 'virtex'
-import toStyle from '@f/to-inline-style'
 import capitalize from '@f/capitalize'
 import focus from '@f/focus-element'
 import classNames from 'classnames'
 import isObject from '@f/is-object'
 import keychord from '@f/keychord'
 import events from '@f/dom-events'
-import forEach from '@f/foreach'
 import EvStore from 'ev-store'
 
 /**
@@ -26,7 +24,9 @@ const eventRegex = new RegExp('^on(?:' + events.join('|') + ')$', 'i')
 function element (tag, attrs) {
   // Only apply sugar to native elements
   if (typeof tag === 'string' && attrs) {
-    forEach((val, key) => attrs[key] = sugar(val, key), attrs)
+    for (let key in attrs) {
+      attrs[key] = sugar(attrs[key], key)
+    }
   }
 
   return _element.apply(null, arguments)
@@ -34,9 +34,6 @@ function element (tag, attrs) {
 
 function sugar (value, name) {
   switch (name) {
-    case 'style':
-      if (isObject(value)) value = toStyle(value)
-      return value
     case 'class':
       return classNames(value)
     case 'focused':
