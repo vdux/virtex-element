@@ -13,12 +13,13 @@
   "dependencies": {
     "@f/capitalize": "^1.0.0",
     "@f/dom-events": "^1.0.3",
+    "@f/event-handler": "^1.0.1",
     "@f/focus-element": "^1.0.0",
     "@f/is-object": "^1.1.1",
     "@f/keychord": "^1.1.1",
     "classnames": "^2.2.3",
     "ev-store": "^7.0.0",
-    "virtex": "^0.3.1"
+    "virtex": "^0.3.3"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",

@@ -2,6 +2,7 @@
  * Imports
  */
 
+import createHandler from '@f/event-handler'
 import {element as _element} from 'virtex'
 import capitalize from '@f/capitalize'
 import focus from '@f/focus-element'
@@ -47,18 +48,6 @@ function sugar (value, name) {
 
 function bindEvent (name, fn) {
   return node => EvStore(node)[name] = createHandler(fn)
-}
-
-function createHandler (fn) {
-  return e => {
-    const f = isObject(fn) ? fn[keychord(e)] : fn
-
-    if (f) {
-      return Array.isArray(f)
-        ? f.map(f => f(e))
-        : f(e)
-    }
-  }
 }
 
 /**
