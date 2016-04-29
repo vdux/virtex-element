@@ -31,20 +31,6 @@ Object/array syntax for classnames.
 
 `class={{nav: true, featured: true, small: false}}` -> `class="nav featured"`
 
-### `focused` property
-
-Setting the `focused` prop to true on an element will cause that element to receive focus on the next tick. E.g.
-
-```javascript
-function render ({props}) {
-  return (
-    <div class={{show: props.opened}}>
-      <input type='text' focused={props.opened} />
-    </div>
-  )
-}
-```
-
 ### Style objects
 
 Passing an object as the `style` prop to an element will cause that object to be stringified and each camel cased property will get dashed. E.g.
