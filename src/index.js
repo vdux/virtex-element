@@ -37,8 +37,6 @@ function sugar (value, name) {
   switch (name) {
     case 'class':
       return classNames(value)
-    case 'autofocus':
-      return value && (node => setTimeout(() => focus(node)))
     default:
       return eventRegex.test(name)
         ? bindEvent(name.slice(2).toLowerCase(), value)
