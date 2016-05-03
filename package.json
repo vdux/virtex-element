@@ -14,7 +14,6 @@
     "@f/capitalize": "^1.0.0",
     "@f/dom-events": "^1.0.3",
     "@f/event-handler": "^1.0.1",
-    "@f/focus-element": "^1.0.0",
     "@f/is-object": "^1.1.1",
     "@f/keychord": "^1.1.1",
     "classnames": "^2.2.3",

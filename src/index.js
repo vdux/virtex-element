@@ -5,7 +5,6 @@
 import createHandler from '@f/event-handler'
 import {element as _element} from 'virtex'
 import capitalize from '@f/capitalize'
-import focus from '@f/focus-element'
 import classNames from 'classnames'
 import isObject from '@f/is-object'
 import keychord from '@f/keychord'
