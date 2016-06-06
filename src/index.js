@@ -44,7 +44,9 @@ function sugar (value, name) {
 }
 
 function bindEvent (name, fn) {
-  return node => EvStore(node)[name] = createHandler(fn)
+  return (node, _name, removing) => removing
+    ? EvStore(node)[name] = null
+    : EvStore(node)[name] = createHandler(fn)
 }
 
 /**
