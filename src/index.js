@@ -4,10 +4,7 @@
 
 import createHandler from '@f/event-handler'
 import {element as _element} from 'virtex'
-import capitalize from '@f/capitalize'
 import classNames from 'classnames'
-import isObject from '@f/is-object'
-import keychord from '@f/keychord'
 import events from '@f/dom-events'
 import EvStore from 'ev-store'
 
@@ -43,10 +40,18 @@ function sugar (value, name) {
   }
 }
 
-function bindEvent (name, fn) {
+function bindEvent (name, handler) {
+  if (!handler) return
+  if (typeof handler === 'function' && !handler.$$fn) {
+    throw new Error('vdux: illegal use of function as event handler')
+  }
+
+  const fn = createHandler(handler)
+  fn.$$vduxAllowedHandler = true
+
   return (node, _name, removing) => removing
     ? EvStore(node)[name] = null
-    : EvStore(node)[name] = createHandler(fn)
+    : EvStore(node)[name] = fn
 }
 
 /**

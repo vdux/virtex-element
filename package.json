@@ -13,7 +13,7 @@
   "dependencies": {
     "@f/capitalize": "^1.0.0",
     "@f/dom-events": "^1.0.3",
-    "@f/event-handler": "^1.0.1",
+    "@f/event-handler": "^1.0.2",
     "@f/is-object": "^1.1.1",
     "@f/keychord": "^1.1.1",
     "classnames": "^2.2.3",
@@ -25,6 +25,7 @@
     "babel-tape-runner": "^2.0.0",
     "standard": "^5.1.0",
     "tap-spec": "^4.1.1",
-    "tape": "^4.2.0"
+    "tape": "^4.2.0",
+    "virtex": "^0.3.11"
   }
 }
