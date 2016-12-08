@@ -47,11 +47,14 @@ function bindEvent (name, handler) {
   }
 
   const fn = createHandler(handler)
-  fn.$$vduxAllowedHandler = true
 
-  return (node, _name, removing) => removing
-    ? EvStore(node)[name] = null
-    : EvStore(node)[name] = fn
+  if (fn) {
+    fn.$$vduxAllowedHandler = true
+
+    return (node, _name, removing) => removing
+      ? EvStore(node)[name] = null
+      : EvStore(node)[name] = fn
+  }
 }
 
 /**
